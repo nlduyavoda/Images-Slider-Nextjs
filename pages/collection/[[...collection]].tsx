@@ -3,6 +3,7 @@ import ImageComponent from "../../Components/Atoms/Image";
 import { useCollectionQuery } from "../../Services/usePhotoQueries";
 import ShopLayout from "./Layout";
 import { Photo } from "./utils";
+import classNames from "classnames";
 
 const Collection = () => {
   const ref = useRef(null);
@@ -26,7 +27,12 @@ const Collection = () => {
     }
   }, [selecetedID]);
 
+   const imageClass = classNames(
+    'relative transition-all duration-300 h-[35vh] w-[35vw] bg-black rounded-[20px]',
+  );
+
   if (isLoading) return <>Loading...</>;
+  
   return (
     <div className="flex flex-wrap justify-center gap-5 p-10">
       {dataSource.photos.map((photo: Photo) => {
@@ -36,10 +42,12 @@ const Collection = () => {
             value={photo.id}
             onClick={(event) => handleSelect(event)}
           >
-            <ImageComponent
+            <div className={imageClass}>
+              <ImageComponent
               photo={photo}
               active={selecetedID === photo.id + ""}
-            />
+              />
+            </div>
           </button>
         );
       })}
