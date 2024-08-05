@@ -9,10 +9,10 @@ const client = createClient(
 const query = "City";
 const getPhotos = async () => {
   const result: VideoPictures = await client.photos
-    .search({ query, per_page: 1000 })
+    .search({ query, per_page: 100 })
     .then((naturePhotos: unknown) => {
-      return naturePhotos as VideoPictures;
-    });
+      return naturePhotos as VideoPictures
+    })
   return result;
 };
 
