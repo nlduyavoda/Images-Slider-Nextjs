@@ -66,3 +66,47 @@ export const video_pictures = {
   ],
   next_page: "https://api.pexels.com/v1/search/?page=2&per_page=1&query=nature",
 };
+
+export const onHandle = ({
+  data,
+  windowWidth,
+}: {
+  data: Photo[]
+  windowWidth: number
+}) => {
+  const result = []
+  let rowItems = 0
+  let curr = result.length > 0 ? result[rowItems] : []
+  let rowVertical = 0
+  // let isOverWidth = false
+  data.forEach((el: Photo, index) => {
+    if (rowVertical + itemWidth + spacing < windowWidth) {
+      curr.push({ el, index })
+      rowVertical = rowVertical + itemWidth + spacing
+      if (index === data.length - 1) {
+        result.push(curr)
+      }
+    } else {
+      result.push(curr)
+      rowItems++
+      curr = []
+      rowVertical = 0
+    }
+  })
+  return result
+}
+const itemWidth = 236
+const spacing = 8
+const checkOverWidth = ({
+  index,
+  windowWidth,
+}): {
+  isOver: boolean
+  length: number
+} => {
+  const dynamicwidth = itemWidth * index + spacing * index
+  return {
+    isOver: dynamicwidth + itemWidth > windowWidth,
+    length: dynamicwidth,
+  }
+}
