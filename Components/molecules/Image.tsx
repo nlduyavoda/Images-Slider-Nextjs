@@ -28,10 +28,10 @@ export const ImageContainer = (props: ImageContainerProps) => {
 
 export const Figure = styled.figure`
   margin: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: inline-block;
   margin-bottom: 10px;
-  break-inside: avoid;
+  width: 100%;
+  height: fit-content;
   figure > img {
     grid-row: 1 / -1;
     grid-column: 1;
@@ -39,8 +39,6 @@ export const Figure = styled.figure`
 `
 
 export const ImageStyle = styled(Image)`
-  max-width: 100%;
   display: block;
   border-radius: 10px;
-  width: 236px;
 `
