@@ -1,33 +1,58 @@
+require('dotenv').config()
 import { ReactElement, useState } from 'react'
 import {
   ImageContainer,
   ImageContainerProps,
-} from '../../Components/molecules/Image'
-import { useCollectionQuery } from '../../Services/usePhotoQueries'
+} from '@Components/molecules/Image'
 import ShopLayout from './Layout'
 import styled from 'styled-components'
 
-const Collection = () => {
-  const { collectionQuery } = useCollectionQuery()
-  const { data: dataSource, isLoading } = collectionQuery()
-  const [selecetedID, setSelectedID] = useState(null)
-  const handleSelect = (id, event) => {
-    if (selecetedID) {
-      return setSelectedID('')
-    }
-    setSelectedID(id)
+const fetcher = async (props: { query?: string; perPage?: string }) => {
+  const { query, perPage } = props
+  const response = await fetch(
+    `${process.env.HOST}/search?query=${query}&per_page=${perPage}`,
+    {
+      headers: {
+        Authorization: process.env.API_KEY,
+      },
+    },
+  ).then((res) => res.json())
+  return response
+}
+
+export async function getServerSideProps() {
+  const repoInfo = await fetcher({
+    query: 'City',
+    perPage: '20',
+  })
+  return {
+    props: {
+      data: repoInfo || [],
+    },
   }
+}
+
+const Collection = ({ data: dataSource, isLoading = false }) => {
+  console.log('dataSource: ', dataSource)
+  const [selectedID, setSelectedID] = useState(null)
   if (isLoading && !dataSource) return <>Loading...</>
   return (
     <Container>
-      {dataSource.photos.map((item, index) => {
+      {dataSource.photos.map((item) => {
+        const handleHover = (event) => {
+          setTimeout(() => {
+            setSelectedID(event.target.id)
+          }, 1000)
+        }
         const imageContainerProps: ImageContainerProps = {
-          onClick: (event) => handleSelect(item.id, event),
           alt: item.alt,
           src: item.src.original,
-          id: item.id,
+          id: item.id + '',
+          onMouseEnter: handleHover,
+          active: selectedID === item.id,
         }
-        return <ImageContainer {...imageContainerProps} />
+
+        return <ImageContainer key={item.id} {...imageContainerProps} />
       })}
     </Container>
   )

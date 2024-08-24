@@ -1,27 +1,28 @@
+import { ImageProps } from 'next/image'
+import { forwardRef, HtmlHTMLAttributes } from 'react'
 import { Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-export type ImageContainerProps = {
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
-  alt: string
-  src: string
+export type ImageComponentProps = {
   dynamicwidth?: number
   dynamicHeight?: number
-  id: any
-} & {
+  active?: boolean
+} & ImageProps
+
+export type ImageContainerProps = ImageComponentProps & {
   ref?: any
 }
 
-export type ImageComponentProps = ImageContainerProps
-
-export const ImageComponent = (props) => {
-  return <ImageStyle ref={props.ref} {...props} />
-}
+export const ImageComponent = forwardRef<any, ImageComponentProps>(
+  (props, ref = null) => {
+    return <ImageStyle ref={ref} {...props} />
+  },
+)
 
 export const ImageContainer = (props: ImageContainerProps) => {
   return (
     <Figure>
-      <ImageComponent ref={props.ref} {...props} />
+      <ImageComponent {...props} />
     </Figure>
   )
 }
