@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-        "@Components/*": ["./Components/*"]
+      "@Atom/*": ["./Components/Atoms/*"],
+      "@Molecules/*": ["./Components/Molecules/*"],
+      "@Organisms/*": ["./Components/Organisms/*"],
+      "@Apis": ["./Apis/index.ts"]
     },
     "target": "es5",
     "lib": [
