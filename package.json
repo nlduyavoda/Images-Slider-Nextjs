@@ -12,6 +12,7 @@
   "dependencies": {
     "@klarr-agency/circum-icons-react": "^2.0.2",
     "axios": "^1.7.2",
+    "babel-plugin-styled-components": "^2.1.4",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "gulp": "^5.0.0",

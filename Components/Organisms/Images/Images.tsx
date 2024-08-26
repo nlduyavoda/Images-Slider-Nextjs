@@ -2,40 +2,30 @@ import {
   ImageContainer,
   ImageContainerProps,
 } from '@Molecules/ImageContainer/Image'
-import { Photo } from 'pexels'
+import { ButtonProps } from 'semantic-ui-react'
+import { ContainerStyle } from './styled'
+import { ImagesType } from './type'
 import { useState } from 'react'
-import { Container } from 'semantic-ui-react'
-import styled from 'styled-components'
 
-type Images = {
-  photos: Photo[]
-}
-
-export const ContainerStyle = styled.div`
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 'masonry';
-`
-export const Images = (props: Images) => {
-  const [selectedID, setSelectedID] = useState(null)
-  const { photos } = props
+export const Images = (props: ImagesType & ButtonProps) => {
+  const { photos, onSelect, ...rest } = props
+  const [selectedID, setSelectedID] = useState<number | null>(null)
+  console.log('selectedID: ', selectedID)
+  const handleSelect = (event: any) => {
+    setTimeout(() => {
+      setSelectedID(event.target.id)
+    }, 100)
+  }
   return (
     <ContainerStyle>
       {photos.map((item) => {
-        const handleHover = (event) => {
-          setTimeout(() => {
-            setSelectedID(event.target.id)
-          }, 1000)
-        }
         const imageContainerProps: ImageContainerProps = {
-          alt: item.alt,
           src: item.src.original,
+          alt: item.alt,
           id: item.id + '',
-          onMouseEnter: handleHover,
-          active: selectedID === item.id,
+          active: item.id.toString() === selectedID?.toString(),
+          onMouseEnter: handleSelect,
         }
-        console.log({ imageContainerProps })
         return <ImageContainer key={item.id} {...imageContainerProps} />
       })}
     </ContainerStyle>
