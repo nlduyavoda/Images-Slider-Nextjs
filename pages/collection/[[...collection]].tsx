@@ -1,9 +1,9 @@
 import { ReactElement } from 'react'
 import ShopLayout from './Layout'
 import styled from 'styled-components'
-import { DimmerLoader } from '@Molecules/DimmerLoader'
 import { Images } from '@Organisms/Images'
-import { fetcher } from '@Apis'
+import { fetcher, fetcherProps, resourceURLs } from '@Apis'
+import CircularIndeterminate from '@Atom/Progress/CircularIndeterminate'
 
 export async function getServerSideProps() {
   const repoInfo = await fetcher({
@@ -18,11 +18,8 @@ export async function getServerSideProps() {
 }
 
 const Collection = ({ data: dataSource, isLoading = false }) => {
-  return isLoading ? (
-    <DimmerLoader active={true} />
-  ) : (
-    <Images photos={dataSource.photos} />
-  )
+  if (isLoading) return <CircularIndeterminate />
+  return <Images photos={dataSource.photos} />
 }
 
 export default Collection

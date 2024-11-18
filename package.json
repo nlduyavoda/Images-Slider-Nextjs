@@ -10,7 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@klarr-agency/circum-icons-react": "^2.0.2",
+    "@mui/icons-material": "^6.1.8",
+    "@mui/material": "^6.1.8",
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.7.2",
     "babel-plugin-styled-components": "^2.1.4",
     "classnames": "^2.5.1",
@@ -22,9 +27,6 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "sass": "^1.77.8",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-icon": "^2.5.0",
-    "semantic-ui-react": "^2.1.5",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {

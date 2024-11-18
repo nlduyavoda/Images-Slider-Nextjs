@@ -1,5 +1,13 @@
 require('dotenv').config()
 
+export type fetcherProps = {
+  url: URL
+  params: {
+    query: string
+    perPage: string
+  }
+}
+
 export const fetcher = async (props: { query?: string; perPage?: string }) => {
   const { query, perPage } = props
   const url = new URL(`${process.env.HOST}/search`)
@@ -12,4 +20,10 @@ export const fetcher = async (props: { query?: string; perPage?: string }) => {
     },
   }).then((res) => res.json())
   return response
+}
+
+export const listPhotoUrl = new URL(`${process.env.HOST}/search`)
+
+export const resourceURLs = {
+  listPhoto: `${process.env.HOST}/search`,
 }

@@ -1,21 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useCollectionQuery } from "../../Services/usePhotoQueries";
 import ShopLayout from "./Layout";
 import { Photo } from "./utils";
 import CircumIcon from "@klarr-agency/circum-icons-react";
 
 const CardComponent = () => {
   const { slug } = useRouter().query;
-  const { photoQuery } = useCollectionQuery();
-  const { data: dataSource, isLoading } = photoQuery({ slug }) as {
-    data: Photo;
-    isLoading: boolean;
-  };
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-  console.log("dataSource: ", dataSource);
+  console.log('slug: ', slug);
+  return <></>
   return (
     <div className="flex flex-col">
       <div className="flex items-start p-11 items-center gap-8">

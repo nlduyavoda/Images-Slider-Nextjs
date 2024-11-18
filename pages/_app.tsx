@@ -3,7 +3,6 @@ import '../styles/globals.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
-import 'semantic-ui-css/semantic.min.css'
 
 interface ErrorBoundaryProps {
   children: ReactNode
