@@ -1,5 +1,5 @@
 import Image, { ImageProps } from "next/image"
-import { Photo } from "../../../pages/collection/utils"
+import { Photo } from '../../../app/collection/utils'
 import classNames from "classnames"
 import { forwardRef, useEffect, useRef } from 'react'
 

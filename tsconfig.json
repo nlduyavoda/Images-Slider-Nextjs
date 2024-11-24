@@ -1,10 +1,18 @@
 {
   "compilerOptions": {
     "paths": {
-      "@Atom/*": ["./Components/Atoms/*"],
-      "@Molecules/*": ["./Components/Molecules/*"],
-      "@Organisms/*": ["./Components/Organisms/*"],
-      "@Apis": ["./Apis/index.ts"]
+      "@Atom/*": [
+        "./Components/Atoms/*"
+      ],
+      "@Molecules/*": [
+        "./Components/Molecules/*"
+      ],
+      "@Organisms/*": [
+        "./Components/Organisms/*"
+      ],
+      "@Apis": [
+        "./Apis/index.ts"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -23,13 +31,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/_document.tsx"  ],
+    "**/*.tsx",
+    "app/_document.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
