@@ -1,25 +1,14 @@
 {
   "compilerOptions": {
     "paths": {
-      "@Atom/*": [
-        "./Components/Atoms/*"
-      ],
-      "@Molecules/*": [
-        "./Components/Molecules/*"
-      ],
-      "@Organisms/*": [
-        "./Components/Organisms/*"
-      ],
-      "@Apis": [
-        "./Apis/index.ts"
-      ]
+      "@Atom/*": ["./Components/Atoms/*"],
+      "@Molecules/*": ["./Components/Molecules/*"],
+      "@Organisms/*": ["./Components/Organisms/*"],
+      "@Apis": ["./Apis/index.ts"],
+      "@GlobalStyles": ["./styles/globals.css"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -45,7 +34,5 @@
     "app/_document.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

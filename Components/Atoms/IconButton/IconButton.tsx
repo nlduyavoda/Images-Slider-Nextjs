@@ -4,8 +4,8 @@ import {
   IconButtonProps,
   SxProps,
 } from '@mui/material'
-
 import React from 'react'
+
 import { Children } from 'react'
 
 export const IconButton = ({ children, ...props }: IconButtonProps) => {
@@ -15,7 +15,7 @@ export const IconButton = ({ children, ...props }: IconButtonProps) => {
         if (React.isValidElement(child)) {
           const customSxP: SxProps = {
             ...props.sx,
-            color: 'var(--gray-200)',
+            // color: 'var(--gray-200)',
           }
           return React.cloneElement(child, {
             sx: customSxP,

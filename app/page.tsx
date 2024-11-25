@@ -1,8 +1,12 @@
-import CircularIndeterminate from '@Atom/Progress/CircularIndeterminate'
+import Home from './Home'
+import RootLayout from './layout'
 
 const App = () => {
-  console.log('this block is render in the server side')
-  return <CircularIndeterminate />
+  return (
+    <RootLayout>
+      <Home />
+    </RootLayout>
+  )
 }
 
 export default App
